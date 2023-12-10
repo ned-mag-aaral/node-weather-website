@@ -1,10 +1,7 @@
 const request = require('request')
 
 // geoapify free tier
-const geocode = (address, callback1) => {
-    const url = 'https://api.geoapify.com/v1/geocode/search?text='+ encodeURIComponent(address) +'&apiKey=01c0d7f78e1e4ea7a7c485804fda1ddd'
-    console.log('Geocode url: ', url)
-
+const geocode = (url, callback1) => {
     request({url, json: true}, (error, {body}) => {
         if(error){
             callback1('Unable to connect to geoapify services', undefined)
@@ -15,7 +12,7 @@ const geocode = (address, callback1) => {
         } else {
             callback1(undefined, {
                 latitude: body.features[0].properties.lat,
-                longtitude: body.features[0].properties.lon,
+                longitude: body.features[0].properties.lon,
                 location: body.features[0].properties.formatted
             })
         }

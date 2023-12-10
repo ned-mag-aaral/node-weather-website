@@ -1,9 +1,6 @@
 const request = require('request')
 
-const forecast = (latitude, longitude, callback2) => {
-   const url = 'http://api.weatherstack.com/current?access_key=14946101b4243dbf6f764cc155784cff&query=' + latitude + ',' + longitude
-   console.log('Forecast url: ', url)
-
+const forecast = (url, callback2) => {
    request({url, json: true}, (error, {body}) => {
         if(error) {
             callback2('Unable to access weather services', undefined)
